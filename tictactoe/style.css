@@ -1,0 +1,134 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-color:rgb(44, 2, 78) ;
+    --blue: rgb(91, 118, 241);
+    --transparent:transparent;
+    --utique:rgb(216, 54, 248);
+    --yellow:rgb(255, 187, 0);
+    --player2:rgb(0, 255, 213);
+    --green:rgb(162, 250, 19);
+}
+
+.hidden{
+    display: none;
+}
+
+.button:hover{
+    background-color: rgb(161, 115, 236);
+}
+
+body{
+    background-color: var(--bg-color) ;
+}
+
+h1{
+    text-align: center;
+    color: azure;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.full{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.entire{
+    display: grid;
+    grid-template-columns: repeat(3,100px);
+    grid-template-rows: 30px repeat(3,100px) 50px;
+    /* grid-column-gap: 10px;
+    grid-row-gap: 10px; */
+    /* background-color: red; */
+}
+
+.square,
+.decision{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 7px;
+}
+
+.player{
+    grid-column: 1/3;
+    background-color:var(--transparent);
+    /* color: var(--player2); */
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--player2);
+}
+
+.fa-solid{
+    color: var(--player2);
+    font-size: 2rem;
+}
+
+.menu{
+    grid-column: 3;
+    max-height: 50px;
+    border-radius: 10px;
+    background-color: var(--utique);
+    color: azure;
+}
+
+button:hover{
+    animation: btnanimation 1s linear;
+}
+
+@keyframes btnanimation {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        background-color: rgb(214, 20, 253);
+        transform: scale(1.05);
+    }
+    100%{
+        background-color: rgb(214, 20, 253);
+        transform: scale(1);
+    }
+}
+
+.resetBtn,
+.replayBtn{
+    display: none;
+}
+
+.square{
+    background-color: rgb(140, 84, 231);
+    border-radius: 10px;
+}
+
+[data-id="player1"],
+[data-id="player2"],
+[data-id="tie"]{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: rgb(1, 8, 6);
+    font-size: 16px;
+}
+
+[data-id="player1"]{
+    background-color: var(--yellow);
+    border-radius: 10px;
+}
+
+[data-id="player2"]{
+    background-color: var(--player2);
+    border-radius: 10px;
+}
+
+[data-id="tie"]{
+    background-color: var(--green);
+    border-radius: 10px;
+}
