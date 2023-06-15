@@ -2,19 +2,30 @@
 document.addEventListener('DOMContentLoaded', () => {
     //the necessary elements
     const squares = document.querySelectorAll('.square');
+    const menu = document.querySelector('.menu');
     const resetBtn = document.querySelector('.resetBtn');
     const replayBtn = document.querySelector('.replayBtn');
-  
+    const main = document.querySelector('.full');
     let currentPlayer = 1;
     let player1Score = 0;
     let player2Score = 0;
     let tieScore = 0;
+
+     //Displaying reset and restart buttons
+     menu.addEventListener('click',() => {
+      menu.classList.toggle('borderperfect');
+      resetBtn.classList.toggle('hidden');
+      replayBtn.classList.toggle('hidden');
+  });
   
     // Add event listener to each square
     squares.forEach((square) => {
       square.addEventListener('click', () => {
-        if (square.textContent === '') {
-          square.textContent = currentPlayer === 1 ? 'X' : 'O';
+        if (square.classList.contains('fa-x')||square.classList.contains('fa-o')) {
+          return;
+        }
+        else{
+          currentPlayer === 1 ? (square.classList.add('fa-light','fa-x')):(square.classList.add('fa-light','fa-o'));
           square.classList.add(currentPlayer === 1 ? 'player1' : 'player2');
   
           // Check for a winner
@@ -55,37 +66,53 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Function to check for a winner
     function checkWinner(player) {
-        const winningCombinations = [
-          [0, 1, 2],
-          [3, 4, 5],
-          [6, 7, 8],
-          [0, 3, 6],
-          [1, 4, 7],
-          [2, 5, 8],
-          [0, 4, 8],
-          [2, 4, 6]
-        ];
-      
-        return winningCombinations.some(combination => {
-          const [a, b, c] = combination;
-          const squareA = squares[a].textContent;
-          const squareB = squares[b].textContent;
-          const squareC = squares[c].textContent;
-      
-          return squareA === squareB && squareB === squareC && squareA === (player === 1 ? 'X' : 'O');
-        });
+      const winningCombinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+    
+      for (let i = 0; i < winningCombinations.length; i++) {
+        const combination = winningCombinations[i];
+        const [a, b, c] = combination;
+        const squareA = squares[a].className.split(' ');
+        const squareB = squares[b].className.split(' ');
+        const squareC = squares[c].className.split(' ');
+        const squareA1 = squareA[3];
+        const squareB1 = squareB[3];
+        const squareC1 = squareC[3];
+        if (
+          squareA1 === squareB1 &&
+          squareB1 === squareC1 &&
+          squareA1 === (player === 1 ? 'fa-x' : 'fa-o')
+        ) {
+          return true; // Found a winning combination
+        }
       }
-  
+      return false; // No winning combination found
+    }
+    
     // Function to check for a tie
     function checkTie() {
       return [...squares].every(square => {
-        return square.textContent !== '';
+        if(square.classList.contains('fa-x') || square.classList.contains('fa-o'))
+        {
+          return true;
+        }
+        return false;
       });
     }
   
     // Function to update the current player display
     function updateCurrentPlayer() {
       const playerElement = document.querySelector('.player');
+      playerElement.classList.toggle('fa-x');
+      playerElement.classList.toggle('fa-o');
       playerElement.textContent = `player ${currentPlayer}.`;
       playerElement.className = `player player${currentPlayer}`;
     }
@@ -99,13 +126,23 @@ document.addEventListener('DOMContentLoaded', () => {
       p1WinsElement.textContent = player1Score;
       p2WinsElement.textContent = player2Score;
       tiesElement.textContent = tieScore;
+      if(player1Score >= 5 || player2Score >= 5)
+      {
+        const finalWin = document.getElementById('finalwin');
+        main.classList.add('win');
+        finalWin.classList.toggle('hidden');
+        finalWin.textContent=`  -player ${currentPlayer} is the winner!`;
+        finalWin.classList.add(currentPlayer === 1 ? 'fa-x' : 'fa-o');
+      }
     }
   
     // Function to reset the board
     function resetBoard() {
       squares.forEach((square) => {
         square.textContent = '';
-        square.className = 'square';
+        square.className = '';
+        square.classList.add('square');
+        square.classList.add('button');
       });
   
       currentPlayer = 1;
