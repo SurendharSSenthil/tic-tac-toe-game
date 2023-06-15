@@ -12,10 +12,19 @@
     --yellow:rgb(255, 187, 0);
     --player2:rgb(0, 255, 213);
     --green:rgb(162, 250, 19);
+    --square:rgb(140,34,231);
 }
 
-.hidden{
+button.hidden{
     display: none;
+}
+
+div.hidden{
+    display: none;
+}
+
+.menu.borderperfect{
+    border-radius: 5px 5px 0 0;
 }
 
 .button:hover{
@@ -47,12 +56,15 @@ h1{
     /* background-color: red; */
 }
 
-.square,
 .decision{
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 7px;
+}
+
+main.win{
+    filter: blur(5px);    
 }
 
 .player{
@@ -65,45 +77,80 @@ h1{
     color: var(--player2);
 }
 
-.fa-solid{
+.fa-x{
     color: var(--player2);
+    font-size: 2rem;
+}
+
+.fa-o{
+    color: var(--yellow);
     font-size: 2rem;
 }
 
 .menu{
     grid-column: 3;
     max-height: 50px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: var(--utique);
     color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-button:hover{
-    animation: btnanimation 1s linear;
+.menu:hover{
+    cursor: pointer;
+    animation: btnanimation 0.5s linear;
 }
 
 @keyframes btnanimation {
     0%{
-        transform: scale(1);
+        background-color: blueviolet;
     }
     50%{
         background-color: rgb(214, 20, 253);
-        transform: scale(1.05);
     }
     100%{
         background-color: rgb(214, 20, 253);
-        transform: scale(1);
     }
 }
 
 .resetBtn,
 .replayBtn{
-    display: none;
+    z-index: 1;
+    display: flex;
+    background-color: var(--utique);
+    color: azure;
+    flex-direction: row;
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    }
+
+.replayBtn{
+    top: 67px;
+    border-radius: 0 0 0 0;
+}
+
+.resetBtn{
+    top: 87px;
+    border-radius: 0 0 5px 5px;
 }
 
 .square{
     background-color: rgb(140, 84, 231);
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.square:hover{
+    cursor: pointer;
+    background-color: var(--square);
 }
 
 [data-id="player1"],
@@ -116,19 +163,32 @@ button:hover{
     flex-wrap: wrap;
     color: rgb(1, 8, 6);
     font-size: 16px;
+    border-radius: 10px;
 }
 
 [data-id="player1"]{
     background-color: var(--yellow);
-    border-radius: 10px;
 }
 
 [data-id="player2"]{
     background-color: var(--player2);
-    border-radius: 10px;
 }
 
 [data-id="tie"]{
     background-color: var(--green);
-    border-radius: 10px;
+}
+
+#decisiondisplay{
+    display: inline-block;
+    font-weight: bold;
+}
+
+#finalwin{
+    color: rgb(255, 232, 232);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 75px;
+    margin-left: 50px;
+    z-index: 100;
 }
