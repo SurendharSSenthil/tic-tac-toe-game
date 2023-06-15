@@ -11,28 +11,32 @@
 </head>
 <body>
     <h1>TIC-TAC-TOE</h1>
+    <div id="finalwin" class="hidden"></div>
     <main class="full">
         <div class="entire">
             <div class="player">
-                <i class="fa-solid fa-xmark"></i>     player 1.
+                <i class="fa-light fa-x"></i>player 1.
             </div>
-            <button class="menu">Menu
-                <button class="resetBtn">Reset</button>
-                <button class="replayBtn">Replay</button>
-            </button>
-            <div id ="0" class="square" type="button"></div>
-            <div id ="1" class="square"></div>
-            <div id ="2" class="square"></div>
-            <div id ="3" class="square"></div>
-            <div id ="4" class="square"></div>
-            <div id ="5" class="square"></div>
-            <div id ="6" class="square"></div>
-            <div id ="7" class="square"></div>
-            <div id ="8" class="square"></div>
-            <div class="decision" data-id="player1">player1: <span class="p1wins"></span></div>
-            <div class="decision" data-id="tie">tie <span class="ties"></span> </div>
-            <div class="decision" data-id="player2">player2: <span id="p2wins"></span></div>
+            <div class="menu">Menu
+                <button class="resetBtn hidden">Reset</button>
+                <button class="replayBtn hidden">Replay</button>
+            </div>
+            <div id ="1" class="square button"></div>
+            <div id ="2" class="square button"></div>
+            <div id ="3" class="square button"></div>
+            <div id ="4" class="square button"></div>
+            <div id ="5" class="square button"></div>
+            <div id ="6" class="square button"></div>
+            <div id ="7" class="square button"></div>
+            <div id ="8" class="square button"></div>
+            <div id ="9" class="square button"></div>
+            <div class="decision" data-id="player1"><span id="decisiondisplay">player1: </span>
+            <span class="p1wins"></span></div>
+            <div class="decision" data-id="tie"><span id="decisiondisplay">tie: </span><span class="ties"></span> </div>
+            <div class="decision" data-id="player2"><span id="decisiondisplay">player2: </span><span id="p2wins"></span></div>
         </div>
     </main>
+    
+    <script src="index.js"></script>
 </body>
 </html>
